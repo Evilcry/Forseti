@@ -1,7 +1,7 @@
 /********************************************************************************
 ** Form generated from reading UI file 'mainwindow.ui'
 **
-** Created: Wed Apr 20 10:18:16 2011
+** Created: Wed May 4 16:08:19 2011
 **      by: Qt User Interface Compiler version 4.7.0
 **
 ** WARNING! All changes made in this file will be lost when recompiling UI file!
@@ -16,6 +16,7 @@
 #include <QtGui/QButtonGroup>
 #include <QtGui/QGridLayout>
 #include <QtGui/QHeaderView>
+#include <QtGui/QLabel>
 #include <QtGui/QMainWindow>
 #include <QtGui/QMenu>
 #include <QtGui/QMenuBar>
@@ -65,7 +66,10 @@ public:
     QPushButton *saveStatsButton;
     QWidget *tab_6;
     QGridLayout *gridLayout_7;
+    QLabel *label_2;
     QTreeWidget *treeWidget_6;
+    QLabel *label;
+    QTreeWidget *treeWidget_7;
     QPushButton *rfrshNetButton;
     QPushButton *saveNtwButton;
     QMenuBar *menuBar;
@@ -241,8 +245,19 @@ public:
         gridLayout_7->setSpacing(6);
         gridLayout_7->setContentsMargins(11, 11, 11, 11);
         gridLayout_7->setObjectName(QString::fromUtf8("gridLayout_7"));
+        label_2 = new QLabel(tab_6);
+        label_2->setObjectName(QString::fromUtf8("label_2"));
+        QFont font;
+        font.setBold(true);
+        font.setWeight(75);
+        label_2->setFont(font);
+
+        gridLayout_7->addWidget(label_2, 0, 0, 1, 1);
+
         treeWidget_6 = new QTreeWidget(tab_6);
         QTreeWidgetItem *__qtreewidgetitem5 = new QTreeWidgetItem();
+        __qtreewidgetitem5->setText(13, QString::fromUtf8("14"));
+        __qtreewidgetitem5->setText(12, QString::fromUtf8("13"));
         __qtreewidgetitem5->setText(11, QString::fromUtf8("12"));
         __qtreewidgetitem5->setText(10, QString::fromUtf8("11"));
         __qtreewidgetitem5->setText(9, QString::fromUtf8("10"));
@@ -257,19 +272,47 @@ public:
         __qtreewidgetitem5->setText(0, QString::fromUtf8("1"));
         treeWidget_6->setHeaderItem(__qtreewidgetitem5);
         treeWidget_6->setObjectName(QString::fromUtf8("treeWidget_6"));
-        treeWidget_6->setColumnCount(12);
+        treeWidget_6->setColumnCount(14);
 
-        gridLayout_7->addWidget(treeWidget_6, 0, 0, 1, 2);
+        gridLayout_7->addWidget(treeWidget_6, 1, 0, 1, 2);
+
+        label = new QLabel(tab_6);
+        label->setObjectName(QString::fromUtf8("label"));
+        label->setFont(font);
+
+        gridLayout_7->addWidget(label, 2, 0, 1, 1);
+
+        treeWidget_7 = new QTreeWidget(tab_6);
+        QTreeWidgetItem *__qtreewidgetitem6 = new QTreeWidgetItem();
+        __qtreewidgetitem6->setText(13, QString::fromUtf8("14"));
+        __qtreewidgetitem6->setText(12, QString::fromUtf8("13"));
+        __qtreewidgetitem6->setText(11, QString::fromUtf8("12"));
+        __qtreewidgetitem6->setText(10, QString::fromUtf8("11"));
+        __qtreewidgetitem6->setText(9, QString::fromUtf8("10"));
+        __qtreewidgetitem6->setText(8, QString::fromUtf8("9"));
+        __qtreewidgetitem6->setText(7, QString::fromUtf8("8"));
+        __qtreewidgetitem6->setText(6, QString::fromUtf8("7"));
+        __qtreewidgetitem6->setText(5, QString::fromUtf8("6"));
+        __qtreewidgetitem6->setText(4, QString::fromUtf8("5"));
+        __qtreewidgetitem6->setText(3, QString::fromUtf8("4"));
+        __qtreewidgetitem6->setText(2, QString::fromUtf8("3"));
+        __qtreewidgetitem6->setText(1, QString::fromUtf8("2"));
+        __qtreewidgetitem6->setText(0, QString::fromUtf8("1"));
+        treeWidget_7->setHeaderItem(__qtreewidgetitem6);
+        treeWidget_7->setObjectName(QString::fromUtf8("treeWidget_7"));
+        treeWidget_7->setColumnCount(14);
+
+        gridLayout_7->addWidget(treeWidget_7, 3, 0, 1, 2);
 
         rfrshNetButton = new QPushButton(tab_6);
         rfrshNetButton->setObjectName(QString::fromUtf8("rfrshNetButton"));
 
-        gridLayout_7->addWidget(rfrshNetButton, 1, 0, 1, 1);
+        gridLayout_7->addWidget(rfrshNetButton, 4, 0, 1, 1);
 
         saveNtwButton = new QPushButton(tab_6);
         saveNtwButton->setObjectName(QString::fromUtf8("saveNtwButton"));
 
-        gridLayout_7->addWidget(saveNtwButton, 1, 1, 1, 1);
+        gridLayout_7->addWidget(saveNtwButton, 4, 1, 1, 1);
 
         tabWidget->addTab(tab_6, QString());
 
@@ -300,7 +343,7 @@ public:
 
         retranslateUi(MainWindow);
 
-        tabWidget->setCurrentIndex(0);
+        tabWidget->setCurrentIndex(5);
 
 
         QMetaObject::connectSlotsByName(MainWindow);
@@ -328,6 +371,8 @@ public:
         refrStatsButton->setText(QApplication::translate("MainWindow", "Refresh", 0, QApplication::UnicodeUTF8));
         saveStatsButton->setText(QApplication::translate("MainWindow", "Save Stats", 0, QApplication::UnicodeUTF8));
         tabWidget->setTabText(tabWidget->indexOf(tab_5), QApplication::translate("MainWindow", "Process Stats", 0, QApplication::UnicodeUTF8));
+        label_2->setText(QApplication::translate("MainWindow", "ipv4 TCP Table", 0, QApplication::UnicodeUTF8));
+        label->setText(QApplication::translate("MainWindow", "ipv4 UDP Table", 0, QApplication::UnicodeUTF8));
         rfrshNetButton->setText(QApplication::translate("MainWindow", "Refresh List", 0, QApplication::UnicodeUTF8));
         saveNtwButton->setText(QApplication::translate("MainWindow", "Save List", 0, QApplication::UnicodeUTF8));
         tabWidget->setTabText(tabWidget->indexOf(tab_6), QApplication::translate("MainWindow", "Network Activity", 0, QApplication::UnicodeUTF8));

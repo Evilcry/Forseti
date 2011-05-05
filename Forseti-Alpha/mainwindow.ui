@@ -18,7 +18,7 @@
     <item row="0" column="0">
      <widget class="QTabWidget" name="tabWidget">
       <property name="currentIndex">
-       <number>0</number>
+       <number>5</number>
       </property>
       <widget class="QWidget" name="tab">
        <attribute name="title">
@@ -234,10 +234,23 @@
         <string>Network Activity</string>
        </attribute>
        <layout class="QGridLayout" name="gridLayout_7">
-        <item row="0" column="0" colspan="2">
+        <item row="0" column="0">
+         <widget class="QLabel" name="label_2">
+          <property name="font">
+           <font>
+            <weight>75</weight>
+            <bold>true</bold>
+           </font>
+          </property>
+          <property name="text">
+           <string>ipv4 TCP Table</string>
+          </property>
+         </widget>
+        </item>
+        <item row="1" column="0" colspan="2">
          <widget class="QTreeWidget" name="treeWidget_6">
           <property name="columnCount">
-           <number>12</number>
+           <number>14</number>
           </property>
           <column>
            <property name="text">
@@ -299,16 +312,116 @@
             <string notr="true">12</string>
            </property>
           </column>
+          <column>
+           <property name="text">
+            <string notr="true">13</string>
+           </property>
+          </column>
+          <column>
+           <property name="text">
+            <string notr="true">14</string>
+           </property>
+          </column>
          </widget>
         </item>
-        <item row="1" column="0">
+        <item row="2" column="0">
+         <widget class="QLabel" name="label">
+          <property name="font">
+           <font>
+            <weight>75</weight>
+            <bold>true</bold>
+           </font>
+          </property>
+          <property name="text">
+           <string>ipv4 UDP Table</string>
+          </property>
+         </widget>
+        </item>
+        <item row="3" column="0" colspan="2">
+         <widget class="QTreeWidget" name="treeWidget_7">
+          <property name="columnCount">
+           <number>14</number>
+          </property>
+          <column>
+           <property name="text">
+            <string notr="true">1</string>
+           </property>
+          </column>
+          <column>
+           <property name="text">
+            <string notr="true">2</string>
+           </property>
+          </column>
+          <column>
+           <property name="text">
+            <string notr="true">3</string>
+           </property>
+          </column>
+          <column>
+           <property name="text">
+            <string notr="true">4</string>
+           </property>
+          </column>
+          <column>
+           <property name="text">
+            <string notr="true">5</string>
+           </property>
+          </column>
+          <column>
+           <property name="text">
+            <string notr="true">6</string>
+           </property>
+          </column>
+          <column>
+           <property name="text">
+            <string notr="true">7</string>
+           </property>
+          </column>
+          <column>
+           <property name="text">
+            <string notr="true">8</string>
+           </property>
+          </column>
+          <column>
+           <property name="text">
+            <string notr="true">9</string>
+           </property>
+          </column>
+          <column>
+           <property name="text">
+            <string notr="true">10</string>
+           </property>
+          </column>
+          <column>
+           <property name="text">
+            <string notr="true">11</string>
+           </property>
+          </column>
+          <column>
+           <property name="text">
+            <string notr="true">12</string>
+           </property>
+          </column>
+          <column>
+           <property name="text">
+            <string notr="true">13</string>
+           </property>
+          </column>
+          <column>
+           <property name="text">
+            <string notr="true">14</string>
+           </property>
+          </column>
+         </widget>
+        </item>
+        <item row="4" column="0">
          <widget class="QPushButton" name="rfrshNetButton">
           <property name="text">
            <string>Refresh List</string>
           </property>
          </widget>
         </item>
-        <item row="1" column="1">
+        <item row="4" column="1">
          <widget class="QPushButton" name="saveNtwButton">
           <property name="text">
            <string>Save List</string>

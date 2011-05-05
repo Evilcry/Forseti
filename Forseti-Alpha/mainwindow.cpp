@@ -29,12 +29,14 @@ MainWindow::~MainWindow()
 void MainWindow::StartUp()
 {
     ui->treeWidget->setHeaderLabels( QStringList() << "Pid" << "Process Name" ); // Proc List
-    ui->treeWidget_2->setHeaderLabels( QStringList() << "Start" << "End" << "Name" << "Len" << "Permission" << "Inode" );
+    ui->treeWidget_2->setHeaderLabels(QStringList() << "Start" << "End" << "Name" << "Len" << "Permission" << "Inode" );
     ui->treeWidget_3->setHeaderLabels(QStringList() << "File Descriptor" << "File Name");
     ui->treeWidget_4->setHeaderLabels(QStringList() << "Name" << "Value");
     ui->treeWidget_5->setHeaderLabel("Thread List");
-    ui->treeWidget_6->setHeaderLabels(QStringList() << "sl" << "LocalAddress" << "RemoteAddress" << "st" << "tx_queue" << "rx_queue"
-                                      << "tr" << "tm->when" << "retrnsmt" << "uid" << "timeout" << "inode");
+    ui->treeWidget_6->setHeaderLabels(QStringList() << "sl" << "LocalAddress" << "Port" << "RemoteAddress" << "Port" << "st" <<
+                                      "tx_queue" << "rx_queue"  << "tr" << "tm->when" << "retrnsmt" << "uid" << "timeout" << "inode");
+    ui->treeWidget_7->setHeaderLabels(QStringList() << "sl" << "LocalAddress" << "Port" << "RemoteAddress" << "Port" << "st" <<
+                                      "tx_queue" << "rx_queue" << "tr" << "tm->when" << "retrnsmt" << "uid" << "timeout" << "inode");
     MainWindow::EnumerateProcesses();
 }
 
@@ -360,6 +362,7 @@ void MainWindow::ProcessNetworkActivity(QString Pid)
                 QString TcpEntry;
                 QRegExp rx("([\\d0-9]{5})");
                 rx.indexIn(socketEntry,0);
+                int row = 0;
 
                 QString socketInode = rx.cap(0);
                 do
@@ -376,6 +379,12 @@ void MainWindow::ProcessNetworkActivity(QString Pid)
                         else
                         {
                             // Fill Tree Widget
+                            QTreeWidgetItem *item = new QTreeWidgetItem(ui->treeWidget_6);
+                            for(int i = 0; i < tcpList.count(); i++)
+                                item->setText(i,tcpList.at(i));
+
+                            ui->treeWidget_4->insertTopLevelItem(row, item);
+                            row++;
                         }
 
                     }
@@ -401,26 +410,63 @@ void MainWindow::ProcessNetworkActivity(QString Pid)
 QStringList MainWindow::ParseTcpLine(QString tcpEntry)
 {
     QStringList splitList = tcpEntry.split(" ");
-    QString ciao;
 
     if ( splitList.isEmpty() )
         return(splitList);
     else
     {
         QStringList tcpEnum;
-        tcpEnum << splitList.at(2);
+        bool addr_conv = true;
+        for (int i = 0; i < splitList.count(); i++ )
+        {
+            if ( splitList.at(i).isEmpty() )
+                continue;
+            else
+            {
+                if ( addr_conv )
+                {
+                    if ( splitList.at(i).endsWith(":") )
+                    {
+                        tcpEnum << splitList.at(i);
+                        QStringList address = splitList.at(i+1).split(":");
+                        tcpEnum << MainWindow::fromHex2Ip(address.at(0));
+                        tcpEnum << address.at(1);
 
-        QStringList address = splitList.at(3).split(":");
-        tcpEnum << MainWindow::fromHex2Ip(address.at(0));
-        tcpEnum << address.at(1);
+                        address.clear();
+                        address = splitList.at(i+2).split(":");
+                        tcpEnum << MainWindow::fromHex2Ip(address.at(0));
+                        tcpEnum << address.at(1);
 
-        address.clear();
+                        addr_conv = false;
+                    }
+                }
+                else
+                {
+                    if ( i+2 > splitList.count() )
+                        break;
+                    else
+                    {
+                        QString qsTemp = splitList.at(i+2);
+                        if ( qsTemp.isEmpty() )
+                            continue;
+                        else
+                        {
+                            if ( qsTemp.contains(":") )
+                            {
+                                QStringList tempSplit = qsTemp.split(":");
+                                tcpEnum << tempSplit.at(0);
+                                tcpEnum << tempSplit.at(1);
+                            }
+                            else
+                                tcpEnum << qsTemp;
+                        }
+                    }
+                }
 
-        address = splitList.at(4).split(":");
-        tcpEnum << MainWindow::fromHex2Ip(address.at(0));
-        tcpEnum << address.at(1);
+            }
+        }
 
-        QString ciao;
+        return(tcpEnum);
     }
 
 }

@@ -28,6 +28,8 @@ private:
     void ProcessNetworkActivity(QString Pid);
     QStringList ParseTcpLine(QString tcpEntry);
     QString fromHex2Ip(QString hexIp);
+    void tcpTreeWidget(QString Pid, QString socketInode);
+    void udpTreeWidget(QString Pid);
 
 private slots:
     void on_refrOFilesButton_clicked();
